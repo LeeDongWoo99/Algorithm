@@ -1,0 +1,58 @@
+import itertools
+
+# n = 총 카드의 수, m = 카드의 총 합
+n, m = input().split()
+# n개 만큼 숫자가 적혀있는 카드 입력
+data = list(map(int, input().split()))
+nCr = itertools.combinations(data, 3)
+result = 0
+coc = []
+for i in nCr:
+    if sum(i) <= int(m):
+        coc.append(sum(i))
+        
+coc.sort(reverse=True)
+print(coc[0])
+
+---------------------------------------설명-----------------------------------------------------------------------
+#1
+"improt itertools"를 통해 itertools 라이브러리를 불러오고 조합과 순열을 쉽게 구할 수 있다.
+itertools: 파이썬에서 제공하는 순열 조합 라이브러리 이다.
+combinations(iterable, r) : iterable에서 원소 개수가 r개인 조합 뽑을 수 있다.
+
+*Iterable*
+iterable 객체 - 반복 가능한 객체
+대표적으로 iterable한 타입 - list, dict, set, str, bytes, tuple, range
+
+#4
+input은 입력되는 모든 것을 문자열로 취급하기 때문에 number는 숫자가 아닌 문자열임에 주의해야 한다.
+입력값을 두 개 이상으로 구분할려면 split 함수를 이용하면 된다.
+split함수는 한 무자열을 나누어 리스트로 구분해 준다.
+기본형 split()을 이용하면 띄어쓰기 기준으로 구분해 준다. 괄호 안에 특정 문자 등을 넣으면, 해당 문자를 기준으로 문장이 나뉜다.
+int(intput().split())
+ㄴint()는 리스트를 정수형을 바꿀 수 없기 때문에 오류가 뜬다.
+이럴 때 식을 간략히 하는 데 map 함수를 활용할 수 있다.
+기본형은 map(적용할 함수, 반복 가능한 자료형)이다. map 함수를 활용하면, 한 줄의 코딩으로 모든 자료형 각각에 함수를 적용할 수 있다.
+
+#6
+각 숫자가 적혀 있는 카드를 리스트로 data 변수에 넣는다.
+
+#7
+combinations 함수를 통해 ncr 변수에 data 리스트 중에서 원소 개수가 3개인 조합을 넣는다.
+
+#10
+for문을 통해 i에 ncr리스트에 있는 원소들을 순차적으로 넣는다.
+
+#11
+i리스트 안 원소의 합이 카드의 총합인 "m" 이하이면 #9에 만든 빈 리스트 coc에 넣는다. 
+
+#14
+.sort(reverse=True)를 통해 coc리스트를 오름차순으로 변경한다.
+ㄴfor문을 다 돌면서 원수 개수가 3개이면서 카드의 총합인 "m" 이하인 값들 중에 최고 가까운 값을 찾기 위해  
+
+#15
+coc리스트의 [0]값(즉 "m"값 이하이면서 coc리스트의 가장 높은 값)을 출력한다.
+m을 넘지 않으면서 m에 최대한 가까운 카드 3장의 합을 출력할 수 있다.
+
+
+
