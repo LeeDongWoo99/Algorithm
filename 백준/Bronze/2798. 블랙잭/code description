@@ -1,7 +1,7 @@
 import itertools
 
 # n = 총 카드의 수, m = 카드의 총 합
-n, m = input().split()
+n, m = map(input().split())
 # n개 만큼 숫자가 적혀있는 카드 입력
 data = list(map(int, input().split()))
 nCr = itertools.combinations(data, 3)
