@@ -1,5 +1,6 @@
 function solution(s) {
-    let num = ["zero", "one", "two", "three", "four", "five", "six", "seven","eight","nine"] 
+    let num = ["zero", "one", "two", "three", "four", "five", "six",
+               "seven","eight","nine"] 
     var lst = s
     
     for (let i = 0; i <num.length; i++) {
