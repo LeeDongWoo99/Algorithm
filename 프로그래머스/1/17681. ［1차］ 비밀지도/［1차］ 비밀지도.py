@@ -18,11 +18,3 @@ def solution(n, arr1, arr2):
         ans.append(row)
     
     return ans
-
-# 예제 데이터
-n = 5
-arr1 = [9, 20, 28, 18, 11]
-arr2 = [30, 1, 21, 17, 28]
-
-# 실행
-print(solution(n, arr1, arr2))
