@@ -1,14 +1,7 @@
 def solution(s):
-    arr = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
-    tmp = ""
-    result = ""
-    for i in range (len(s)):
-        c = s[i]
-        if(c.isnumeric()):
-            result+=c
-        else:
-            tmp+=c
-            if tmp in arr:
-                result+=str(arr.index(tmp))
-                tmp=""
-    return int(result)
+    # 각 숫자에 대한 단어
+    num = {"zero":"0","one":"1","two":"2","three":"3","four":"4","five":"5","six":"6",
+           "seven":"7","eight":"8", "nine":"9"}
+    for key in num:
+        s = s.replace(key, num[key])
+    return int(s)
