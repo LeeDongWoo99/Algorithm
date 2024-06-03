@@ -1,17 +1,15 @@
 def solution(board, moves):
-    box = []
     result = 0
-
+    basket = []
     for move in moves:
         for row in board:
-            if row[move - 1] != 0:
-                doll = row[move - 1]
-                row[move - 1] = 0
-                if box and box[-1] == doll:
-                    result += 2
-                    box.pop()
+            if row[move-1] != 0:
+                doll = row[move-1]
+                row[move-1] = 0
+                if basket and basket[-1] == doll:
+                    result +=2
+                    basket.pop()
                 else:
-                    box.append(doll)
+                    basket.append(doll)
                 break
-
     return result
