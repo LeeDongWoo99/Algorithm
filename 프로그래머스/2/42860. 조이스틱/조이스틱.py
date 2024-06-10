@@ -23,8 +23,3 @@ def solution(name):
         min_moves = min(min_moves, i + size - next_index + distance)
     
     return ans + min_moves
-
-# 테스트 케이스
-print(solution("JEROEN"))  # 예시 출력: 56
-print(solution("JAN"))     # 예시 출력: 23
-print(solution("JALL"))    # 추가 테스트 케이스
