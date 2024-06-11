@@ -1,9 +1,9 @@
 def solution(people, limit):
     # 내림차순으로 정렬
     people.sort(reverse=True)
-    # 가장 가벼운 사람을 가리키는 포인터
-    left = 0
     # 가장 무거운 사람을 가리키는 포인터
+    left = 0
+    # 가장 가벼운 사람을 가리키는 포인터, 인덱스의 끝 번호는 리스트 크기 -1을 해줘야 한다.
     right = len(people) - 1
     # 필요한 구명보트의 수
     result = 0
