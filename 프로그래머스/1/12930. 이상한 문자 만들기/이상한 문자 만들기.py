@@ -1,11 +1,14 @@
 def solution(s):
-    answer = ''
-    new_list = s.split(' ')
-    for i in new_list:
-        for j in range(len(i)):
-            if j % 2 == 0:
-                answer += i[j].upper()
+    st = s.split(" ")
+    new_words = []
+    for word in st:
+        new_word = ''
+        for i in range(len(word)):
+            # 짝수인 경우
+            if i % 2 == 0:
+                new_word += word[i].upper()
+            # 홀수인 경우
             else:
-                answer += i[j].lower()
-        answer+= ' '
-    return answer[0:-1]
+                new_word += word[i].lower()
+        new_words.append(new_word)
+    return ' '.join(new_words)
