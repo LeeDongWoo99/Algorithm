@@ -1,0 +1,25 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+
+# 총 거래 건수
+N = int(input())
+# 결과값
+result = ""
+money = 0
+for i in range(N):
+	# 거래명과 거래액 입력
+	ci, v = input().split()
+	vi = int(v)
+	if ci == "in":
+		money += vi
+	else:
+		money -= vi
+		
+	if money < 0:
+		result = "fail"
+		
+if result != "fail":
+	print("success")
+else:
+	print("fail")
+
