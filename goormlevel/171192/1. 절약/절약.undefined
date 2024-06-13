@@ -4,7 +4,7 @@
 # 총 거래 건수
 N = int(input())
 # 체크값
-check = ""
+check = True
 money = 0
 for i in range(N):
 	# 거래명과 거래액 입력
@@ -16,10 +16,13 @@ for i in range(N):
 		money -= vi
 		
 	if money < 0:
-		check = "fail"
-		
-if check != "fail":
+		check = False
+		break
+if check != False:
 	print("success")
 else:
-	print(check)
+	print("fail")
+		
+
+
 
