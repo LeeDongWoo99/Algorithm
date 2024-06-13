@@ -1,27 +1,26 @@
-#import sys # 없어도 좋고
-#input = sys.stdin.readline # 있으면 더 좋고
+import sys
+input = sys.stdin.readline
 
-n, m = map(int, input().split()) # 집 개수, 장마 기간
-k = list(map(int, input().split())) # 마을의 땅 높이들
+# 집의 개수와 장마기간 입력
+N, M = map(int, input().split())
+# 집의 높이 입력
+k = list(map(int, input().split()))
+# 비를 맞은 횟수 리스트 생성
+rain_k = [0] * N  
 
-array = [0] * (n + 1) # 누적합을 위한 배열 초기화
-b = set() # 비 내릴 위치들
+for i in range(1, M + 1):
+    si, ei = map(int, input().split())
+    for j in range(si - 1, ei):  
+        k[j] += 1  # 비를 맞은 집의 높이를 +1 증가시킴
+        rain_k[j] += 1  # rain_k 리스트에 비를 맞은 횟수 +1
 
-for i in range(m): # 장마 기간들
-	s, e = map(int, input().split()) # 장마의 시작, 종료 위치	
+    # 장마가 시작된 후 3의 배수인 날
+    if i % 3 == 0:
+        # rain_k에 표시된 집만 -1을 해준다.
+        for idx in range(N):
+            if rain_k[idx] > 0:
+                k[idx] -= 1
+                rain_k[idx] = 0  # 비 맞은 횟수를 초기화
 
-	array[s-1] += 1 # 장마 시작 지점
-	array[e] -= 1 # 장마 종료 지점
-	b.update(range(s-1, e)) #비의 범위 추가
-	
-	if (i + 1) % 3 == 0: #배수 시스템 작동 
-		for j in b:
-			k[j] -= 1
-		b.clear()
-
-count = 0 # 누적합 저장 변수
-for j in range(n):
-	count += array[j] # 현재 위치의 누적합 계산
-	k[j] += count # 땅 높이 상승
-
-print(' '.join(map(str, k)))
+# 결과 출력 
+print(" ".join(map(str, k)))
