@@ -1,26 +1,22 @@
 import sys
 input = sys.stdin.readline
 
-# 집의 개수와 장마기간 입력
-N, M = map(int, input().split())
-# 집의 높이 입력
+N,M = map(int, input().split())
 k = list(map(int, input().split()))
-# 비를 맞은 횟수 리스트 생성
-rain_k = [0] * N  
 
-for i in range(1, M + 1):
-    si, ei = map(int, input().split())
-    for j in range(si - 1, ei):  
-        k[j] += 1  # 비를 맞은 집의 높이를 +1 증가시킴
-        rain_k[j] += 1  # rain_k 리스트에 비를 맞은 횟수 +1
+rain_k = [0] * N
 
-    # 장마가 시작된 후 3의 배수인 날
-    if i % 3 == 0:
-        # rain_k에 표시된 집만 -1을 해준다.
-        for idx in range(N):
-            if rain_k[idx] > 0:
-                k[idx] -= 1
-                rain_k[idx] = 0  # 비 맞은 횟수를 초기화
-
-# 결과 출력 
+for i in range(1, M+1):
+	si, ei = map(int, input().split())
+	for j in range(si -1, ei):
+		k[j] +=1
+		rain_k[j] +=1
+		
+	if i % 3 == 0:
+		
+		for idx in range(N):
+			if rain_k[idx] >0:
+				k[idx] -=1
+				rain_k[idx] = 0
+				
 print(" ".join(map(str, k)))
