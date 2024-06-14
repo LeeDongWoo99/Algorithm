@@ -1,0 +1,35 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+
+import sys
+input = sys.stdin.readline
+
+# 평균값을 담을 리스트 초기화
+result = []
+
+# 시험의 개수와 과목의 개수를 입력 받는다.
+N, M = map(int, input().split())
+
+# 과목별로 시험을 본 횟수를 저장할 리스트와 점수를 계산할 리스트를 초기화 합니다.
+
+exam_tot = [0] * (M+1) # [0, 0, 0, 0]
+score = [0] * (M+1) # [0 ,0 ,0, 0]
+
+# 응시한 시험의 개수만큼 과목 번호 ci와 시험 성적 si를 입력 받습니다.
+for _ in range(N):
+	ci, si = map(int, input().split())
+	exam_tot[ci] += 1 
+	score[ci] += si 
+
+for i in range(1, M + 1):
+	# 과목에 대해 시험을 응시했지만 , 안본 경우
+	if exam_tot[i] == 0:
+		result.append([i, 0])
+	else:
+		cal = score[i] / exam_tot[i]
+		result.append([i, cal])
+	
+result.sort(key=lambda x : x[1], reverse = True)
+print(result[0][0])
+
+
