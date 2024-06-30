@@ -3,7 +3,7 @@ from itertools import permutations
 def solution(numbers):
     num = [ch for ch in numbers] # 문자열 numbers의 각 문자를 리스트 num에 담는다.
     ans = [] # 결과를 저장할 리스트
-    per = [] # num에 있는 요를 기준으로 만들 수 있는 모든 숫자 조합 생성을 저장할 리스트
+    per = [] # num에 있는 요쇼를 기준으로 만들 수 있는 모든 숫자 조합 생성을 저장할 리스트
     
     for i in range(1, len(num) + 1): # 1 ~ 문자열 길이 만큼 반복
         per+= list(permutations(num, i)) # num의 각 요소들로 길이가 i인 모든 순열을 생성하여 per 리스트에 추가
