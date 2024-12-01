@@ -1,18 +1,13 @@
-# 카드의 개수와 카드의 합을 입력
-N, M = map(int, input().split())
-# 각 카드의 숫자를 입력
+num_input= list(map(int,input().split()))
+N = num_input[0]
+M = num_input[1]
 lst = list(map(int, input().split()))
-# 카드의 총 합
-result = 0
-
-for i in range(N):
-    for j in range(i+1, N):
+max_ans = 0
+for i in range(0, N-2):
+    for j in range(i+1, N-1):
         for z in range(j+1, N):
-            total = lst[i] + lst[j] + lst[z]
-            if total > M:
-                continue
-            else:
-                result = max(result, total)
-print(result)
-            
-            
+            ans = lst[i] + lst[j] + lst[z]
+            if ans <= M and ans > max_ans:
+                max_ans = ans
+print(max_ans)
+
