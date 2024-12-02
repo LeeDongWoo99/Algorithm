@@ -1,14 +1,11 @@
 N = int(input())
 mid_n = int(N / 2)
-for M in range(mid_n, N):
-    ans = 0
-    str_n = str(M)
-    for i in str_n:
-        ans += int(i)
-    if ans + M == N:
+for M in range(mid_n, N + 1):
+    num = sum(map(int, str(M)))
+    sum_num = num + M
+    if sum_num == N:
         print(M)
         break
-else:
-    print(0)
-
+    if M == N:
+        print(0)
 
