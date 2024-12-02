@@ -1,12 +1,14 @@
 N = int(input())
-
-result = 0
-
-for num in range(1, N+1):
-    lst = list(map(int, str(num)))
-    result = sum(lst) + num
-    if result == N:
-        print(num)
+mid_n = int(N / 2)
+for M in range(mid_n, N):
+    ans = 0
+    str_n = str(M)
+    for i in str_n:
+        ans += int(i)
+    if ans + M == N:
+        print(M)
         break
-    if N == num: # 입력값과 num이 같다는 것은, 반복문이 끝날때 까지 생성자 값이 안나왔다는 뜻이다.
-        print(0)
+else:
+    print(0)
+
+
