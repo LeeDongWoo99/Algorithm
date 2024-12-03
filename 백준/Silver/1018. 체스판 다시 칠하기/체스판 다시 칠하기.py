@@ -1,27 +1,46 @@
-n,m=map(int,input().split())
+N, M = map(int, input().split())
+board = [input() for _ in range(N)]
 
-ls=[]
-cnt=[]
-for i in range(n):
-    ls.append(input())
-    
-for a in range(n-7):
-    for b in range(m-7):#8*8로 자르기 위해, -7해준다
-        w_index=0 #흰색으로 시작
-        b_index=0 #검은색으로 시작
-        for i in range(a,a+8):#시작지점
-            for j in range(b,b+8):#시작지점
-                if (i+j)%2==0:#짝수인 경우
-                    if ls[i][j]!='W':#W가 아니면, 즉 B이면
-                        w_index+=1#W로 칠하는 갯수
-                    else:#W일 때
-                        b_index+=1#B로 칠하는 갯수
-                else:#홀수인 경우
-                    if ls[i][j]!='W':#W가 아니면, 즉 B이면
-                        b_index+=1#B로 칠하는 갯수
-                    else:
-                        w_index+=1#W로 칠하는 갯수
-                        
-        cnt.append(w_index) #W로 시작할 때 경우의 수
-        cnt.append(b_index) #B로 시작할 때 경우의 수
-print(min(cnt))
+# 체스판 패턴 정의
+chess_W = [
+    "WBWBWBWB",
+    "BWBWBWBW",
+    "WBWBWBWB",
+    "BWBWBWBW",
+    "WBWBWBWB",
+    "BWBWBWBW",
+    "WBWBWBWB",
+    "BWBWBWBW",
+]
+
+chess_B = [
+    "BWBWBWBW",
+    "WBWBWBWB",
+    "BWBWBWBW",
+    "WBWBWBWB",
+    "BWBWBWBW",
+    "WBWBWBWB",
+    "BWBWBWBW",
+    "WBWBWBWB",
+]
+
+# 최소값 초기화
+min_paint = float("inf")
+
+# 모든 8x8 체스판을 탐색
+for i in range(N - 7):  # 가능한 행 시작점
+    for j in range(M - 7):  # 가능한 열 시작점
+        paint_W = 0  # W로 시작하는 체스판과의 차이
+        paint_B = 0  # B로 시작하는 체스판과의 차이
+
+        # 8x8 체스판 체크
+        for x in range(8):
+            for y in range(8):
+                if board[i + x][j + y] != chess_W[x][y]:
+                    paint_W += 1
+                if board[i + x][j + y] != chess_B[x][y]:
+                    paint_B += 1
+
+        # 최소값 갱신
+        min_paint = min(min_paint, paint_W, paint_B)
+print(min_paint)
