@@ -11,13 +11,8 @@ public class Main {
         int e = sc.nextInt();
         int f = sc.nextInt();
 
-        for (int x = -999; x <= 999; x++) {
-            for (int y = -999; y <= 999; y++) {
-                if ((a * x) + (b * y) == c && (d * x) + (e * y) == f) {
-                    System.out.println(x + " " + y);
-                    return;
-                }
-            }
-        }
+        int x = (c * e - b * f) / (a * e - b * d);
+        int y = (c * d - a * f) / (b * d - a * e);
+        System.out.println(x + " " + y);
     }
 }
