@@ -4,22 +4,19 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        int sugar = sc.nextInt(); // 설탕 무게 입력
-        int bag = 0; // 봉지 수 초기화
+        int N = sc.nextInt();
+        int ans = 0;
 
-        // 설탕 무게가 0 이상일 때 반복
-        while (sugar >= 0) {
-            if (sugar % 5 == 0) { 
-                bag += (sugar / 5); 
-                System.out.println(bag); 
-                break; 
+        while (N >= 0) {
+            if (N % 5 == 0) {
+                ans += N / 5;
+                System.out.println(ans);
+                break;
             }
-            sugar -= 3; 
-            bag += 1; 
+            N -= 3;
+            ans += 1;
         }
-        
-        // 3과 5로 나눠지지 않으면 -1 출력
-        if (sugar < 0) {
+        if (N < 0) {
             System.out.println(-1);
         }
     }
