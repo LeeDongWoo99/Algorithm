@@ -5,26 +5,23 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-    public static int N;
-    public static int M;
     public static int[] arr;
     public static StringBuilder sb = new StringBuilder();
+    public static int N;
+    public static int M;
 
     public static void dfs(int at, int depth) {
-
         if (depth == M) {
             for (int val : arr) {
-                sb.append(val).append(' ');
+                sb.append(val).append(" ");
             }
-            sb.append('\n');
+            sb.append("\n");
             return;
         }
 
         for (int i = at; i <= N; i++) {
-
-            arr[depth] = i;
-            dfs(i + 1, depth + 1);
-
+                arr[depth] = i;
+                dfs(i + 1,depth + 1);
         }
     }
 
