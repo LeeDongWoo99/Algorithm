@@ -3,21 +3,21 @@ input = sys.stdin.readline
 
 def dfs(depth):
     if depth == M:
-        result = tuple(ans)
-        if result not in results:
-            results.add(result)
-            print(*result)
+        print(*ans)
         return
 
+    prev = -1
     for i in range(N):
-        ans.append(arr[i])
-        dfs(depth + 1)
-        ans.pop()
+        if prev != arr[i]:
+            ans.append(arr[i])
+            dfs(depth + 1)
+            ans.pop()
+            prev = arr[i]
+
 
 N, M = map(int, input().split())
 arr = list(map(int, input().split()))
 arr.sort()
 ans = []
-results = set()
 
 dfs(0)
