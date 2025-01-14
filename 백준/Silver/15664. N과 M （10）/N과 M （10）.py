@@ -1,21 +1,25 @@
 import sys
 input = sys.stdin.readline
 
-def dfs(depth, start):
-	if depth == M:
-		print(" ".join(map(str, ans)))
-		return
+def dfs(start):
+    if len(ans) == M:
+        print(*ans)
+        return
 
-	prev = -1
-	for i in range(start, N):
-		if prev != arr[i]:
-			ans.append(arr[i])
-			dfs(depth + 1, i + 1)
-			ans.pop()
-			prev= arr[i]
+    prev = -1
+    for i in range(start, N):
+        if not visited[i] and arr[i] != prev:
+            visited[i] = True
+            ans.append(arr[i])
+            prev = arr[i]
+            dfs(i + 1)
+            visited[i] = False
+            ans.pop()
 
 N, M = map(int, input().split())
 arr = list(map(int, input().split()))
 arr.sort()
 ans = []
-dfs (0, 0)
+visited = [False] * N
+
+dfs(0)
