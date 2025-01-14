@@ -1,23 +1,22 @@
 import sys
 input = sys.stdin.readline
 
-def dfs(depth):
-    if depth == M:
-        print(*ans)
+def tracking(k):
+    if k == m:
+        for i in range(m):
+            print(answer[i], end = ' ')
+        print()
         return
 
-    prev = -1
-    for i in range(N):
-        if prev != arr[i]:
-            ans.append(arr[i])
-            dfs(depth + 1)
-            ans.pop()
-            prev = arr[i]
+    temp = 0
+    for i in range(n):
+        if temp != arr[i]:
+            answer[k] = arr[i]
+            temp = arr[i]
+            tracking(k+1)
 
-
-N, M = map(int, input().split())
+n, m = map(int, input().split())
 arr = list(map(int, input().split()))
 arr.sort()
-ans = []
-
-dfs(0)
+answer = [-1]*n
+tracking(0)
