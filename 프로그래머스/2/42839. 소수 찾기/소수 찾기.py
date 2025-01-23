@@ -2,8 +2,8 @@ from itertools import permutations
 
 def solution(numbers):
     num = [x for x in numbers]
-    per = []
     ans = []
+    per = []
     
     for i in range(1, len(num) + 1):
         per += permutations(num, i)
@@ -22,4 +22,7 @@ def solution(numbers):
         if check:
             ans.append(n)
     return len(set(ans))
-        
+    
+    
+    answer = 0
+    return answer
