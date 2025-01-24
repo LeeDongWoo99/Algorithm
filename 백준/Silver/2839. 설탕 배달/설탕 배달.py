@@ -1,12 +1,12 @@
-N = int(input())
+suggar = int(input())
 
 bag = 0
-while(N >= 0):
-    if N % 5 == 0:
-        bag += N // 5
+while suggar >= 0:
+    if suggar % 5 == 0:
+        bag += suggar // 5
         print(bag)
         break
-    N -= 3
+    suggar -= 3
     bag += 1
 else:
     print(-1)
