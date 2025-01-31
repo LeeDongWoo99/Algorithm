@@ -4,23 +4,23 @@ def solution(s):
     if len(s) == 1:
         return 1
 
-    for step in range(1, len(s)//2 + 1):
+    for step in range(1, len(s) // 2 + 1):
         result = ''
-        tmp = s[:step]
-        cnt = 1
+        prev = s[: step]
+        count = 1
         for j in range(step, len(s), step):
-            if tmp == s[j : j + step]:
-                cnt += 1
+            if prev == s[j: j + step]:
+                count += 1
             else:
-                if cnt > 1:
-                    result += str(cnt) + tmp
+                if count > 1:
+                    result += str(count) + prev
                 else:
-                    result += tmp
-                cnt = 1
-                tmp = s[j:j + step]
-        if cnt > 1:
-            result += str(cnt) + tmp
+                    result += prev
+                count = 1
+                prev = s[j: j + step]
+        if count > 1:
+            result += str(count) + prev
         else:
-            result += tmp
+            result += prev
         answer.append(len(result))
     return min(answer)
