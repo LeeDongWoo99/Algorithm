@@ -1,25 +1,27 @@
 from itertools import permutations
 
-def solution(numbers):
-    num = [ch for ch in numbers] 
-    ans = []
-    per = []
-    
-    for i in range(1, len(num) + 1): 
-        per+= list(permutations(num, i)) 
-    lst = [int(("").join(p)) for p in per] 
-    
-    for n in lst:                            
-        if n < 2:       
-            continue
-        if n == 2:
-            ans.append(n)
-        check = True           
-        for i in range(2,int(n**0.5) + 1): 
-            if n % i == 0:               
-                check = False
-                break
-        if check: 
-            ans.append(n)                      
+def is_prime(num):
+    if num < 2:
+        return False
+    if num == 2:
+        return True
+    for i in range(2, int(num ** 0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
 
-    return len(set(ans)) 
+
+def solution(numbers):
+    num = [ch for ch in numbers] # 문자열에 있는 숫자 요소들을 나눔
+    per = set()
+    ans = 0
+    
+    for i in range(1, len(numbers) + 1):
+        for p in permutations(num, i):
+            per.add(int("".join(p)))
+                    
+    for nm in per:
+        if is_prime(nm):
+            ans += 1
+        
+    return ans
