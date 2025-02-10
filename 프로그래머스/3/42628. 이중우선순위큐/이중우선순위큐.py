@@ -19,7 +19,7 @@ def solution(operations):
                 min_num = heapq.heappop(min_heap)
                 max_heap.remove(-min_num)
                 
-        if not min_heap and max_heap:
+        if not min_heap:
             min_heap.clear()
             max_heap.clear()
             
