@@ -1,17 +1,14 @@
 def solution(k, dungeons):
     max_count = 0
-    
-    def dfs(current_k, count):
+    def dfs(hp, count):
         nonlocal max_count
         max_count = max(max_count, count)
-        
+    
         for i in range(len(dungeons)):
-            if not visited[i] and current_k >= dungeons[i][0]:
+            if hp >= dungeons[i][0] and not visited[i]:
                 visited[i] = True
-                dfs(current_k - dungeons[i][1], count + 1)
+                dfs(hp - dungeons[i][1], count + 1)
                 visited[i] = False
-                
     visited = [False] * len(dungeons)
     dfs(k, 0)
-    
     return max_count
