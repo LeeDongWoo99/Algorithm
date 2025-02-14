@@ -2,10 +2,7 @@ import sys
 input = sys.stdin.readline
 
 N = int(input())
-lst = []
-for _ in range(N):
-    num = int(input())
-    lst.append(num)
+lst = [int(input()) for _ in range(N)]
     
 stack = []
 max_rst = 0
