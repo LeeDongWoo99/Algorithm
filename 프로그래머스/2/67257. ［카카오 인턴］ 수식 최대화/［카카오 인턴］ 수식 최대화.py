@@ -1,43 +1,37 @@
+import re
 from itertools import permutations
 
-def operation(num1, num2, op):  
-    """ 연산자에 따라 수식을 계산하는 함수 """
-    if op == '+':
-        return str(int(num1) + int(num2))
-    if op == '-':
-        return str(int(num1) - int(num2))
-    if op == '*':
-        return str(int(num1) * int(num2))
-
-def calculate(exp, op_order):  
-    """ 연산자 우선순위에 맞게 계산하는 함수 """
-    array = exp[:]  # 원본 리스트 복사
-    for o in op_order:
-        stack = []
-        while array:
-            tmp = array.pop(0)
-            if tmp == o:
-                stack.append(operation(stack.pop(), array.pop(0), o))
-            else:
-                stack.append(tmp)
-        array = stack
-    return abs(int(array[0]))
-
-def parse_expression(expression):
-    """ 주어진 수식을 숫자와 연산자로 분리하는 함수 """
-    tokens = []
-    tmp = ""
-    for char in expression:
-        if char.isdigit():
-            tmp += char
-        else:
-            tokens.append(tmp)
-            tokens.append(char)
-            tmp = ""
-    tokens.append(tmp)
-    return tokens
-
 def solution(expression):
-    op_orders = list(permutations(['+', '-', '*'], 3))  # 연산자 우선순위 조합
-    tokens = parse_expression(expression)  # 숫자와 연산자 분리 (한 번만 수행)
-    return max(calculate(tokens, op_order) for op_order in op_orders)
+    tokens = re.split(r'(\D)', expression)
+    numbers = list(map(int, tokens[::2]))   
+    ops = tokens[1::2]                      
+
+    max_result = 0  # 최대값 저장
+
+    # 2️⃣ 모든 연산자 우선순위 경우의 수 탐색
+    for op_order in permutations(['+', '-', '*']):  
+        num_copy = numbers[:]  # 숫자 복사본
+        op_copy = ops[:]  # 연산자 복사본
+
+        # 3️⃣ 현재 연산자 우선순위대로 반복적으로 연산 수행
+        for op in op_order:  
+            while op in op_copy:  # 해당 연산자가 있을 때만 처리
+                idx = op_copy.index(op)  # 연산자 위치 찾기
+
+                # 계산 수행
+                if op == '+':
+                    result = num_copy[idx] + num_copy[idx + 1]
+                elif op == '-':
+                    result = num_copy[idx] - num_copy[idx + 1]
+                elif op == '*':
+                    result = num_copy[idx] * num_copy[idx + 1]
+
+                # 리스트 업데이트 (연산자 및 숫자 제거 후 결과 삽입)
+                num_copy[idx] = result
+                del num_copy[idx + 1]  # 사용한 숫자 제거
+                del op_copy[idx]  # 사용한 연산자 제거
+
+        # 4️⃣ 최종 결과값 갱신
+        max_result = max(max_result, abs(num_copy[0]))
+
+    return max_result
