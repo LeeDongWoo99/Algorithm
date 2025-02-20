@@ -1,10 +1,13 @@
 def solution(routes):
-    answer = 0
-    routes.sort(key=lambda x: x[1]) 
-    camera = -30001 
-
-    for route in routes:
-        if camera < route[0]:
+    routes.sort(key = lambda x: x[1])
+    camara = routes[0][1]
+    answer = 1
+    
+    for i in range(1, len(routes)):
+        if camara >= routes[i][0]:
+            continue
+        else:
+            camara = routes[i][1]
             answer += 1
-            camera = route[1]
+            
     return answer
