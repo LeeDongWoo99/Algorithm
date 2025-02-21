@@ -3,11 +3,10 @@ from itertools import permutations
 
 def solution(expression):
     tokens = re.split(r'(\D)', expression)
-    numbers = list(map(int, tokens[::2]))   
-    ops = tokens[1::2]                      
-
-    max_result = 0  # 최대값 저장
-
+    numbers = list(map(int, tokens[::2]))
+    ops = tokens[1::2]
+    
+    max_result = 0
     # 2️⃣ 모든 연산자 우선순위 경우의 수 탐색
     for op_order in permutations(['+', '-', '*']):  
         num_copy = numbers[:]  # 숫자 복사본
