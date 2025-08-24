@@ -11,7 +11,7 @@ def solution(skill, skill_trees):
             if check_list[i] != skill[i]:
                 is_valid = False
                 break
-        if is_valid:
+        else:
             result +=1
 
     return result
