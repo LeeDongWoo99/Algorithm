@@ -1,14 +1,10 @@
 def solution(s, n):
-    low = "abcdefghijklmnopqrstuvwxyz" # 
-    up = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    answer = ''
+    result = ""
     for ch in s:
         if ch.islower():
-            ind = (low.index(ch)+n) % 26
-            answer += low[ind] 
+            result += chr((ord(ch) - ord('a') + n) % 26 + ord('a'))
         elif ch.isupper():
-            ind = (up.index(ch)+n) % 26
-            answer += up[ind]
-        else: # 공백일 경우 공백 추가
-            answer += " "
-    return answer
+            result += chr((ord(ch) - ord('A') + n) % 26 + ord('A'))
+        else:
+            result += ch
+    return result
