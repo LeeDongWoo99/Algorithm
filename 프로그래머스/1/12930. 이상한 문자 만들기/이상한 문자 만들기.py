@@ -14,7 +14,5 @@ def solution(s):
                 else:
                     new_word += word[i].lower()
             result.append(new_word)
-    return ''.join(result)
+    return "".join(result)
 
-# 테스트
-print(solution("hello   world"))  # "HeLlO   WoRlD"
